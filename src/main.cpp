@@ -2,21 +2,61 @@
 #include <fstream>
 #include <raylib-cpp.hpp>
 #include <cstdint>
+#include <string>
 namespace entities{
 class Entity 
 {
-    public:
-    uint8_t health = 100;
-    //Add the missing arguments and also make the other extended classes (player, per-type enemy)
-    private:
-
+    protected:
+    uint8_t health;   
+    uint8_t movespeed;
+    uint8_t damage;
 };
+
+class Player:public Entity
+{
+    public:
+    Player() { health = 100; movespeed = 10; damage = 20;}
+    void movement(char key)
+    {
+        int keyint = (int)key;
+        switch(keyint)
+        {
+            case 87:
+            move(87);
+            break;
+            case 65:
+            move(65);
+            break;
+            case 83:
+            move(83);
+            break;
+            case 68:
+            move(68);
+            break;
+        }
+    }
+
+    private:
+    const char* keyboardmovement[4] = {"w","s","a","d"};
+    void move(int key)
+    {
+
+    }
+};
+
+////////////////////////////////////////////////
 }
 namespace fstream{
 void loadSprites()
 {
     //Add the image loading from fstream maybe?
 };
+std::fstream readPrevData(std::fstream dataFile) //probably a wrong way to do it, i need to watch some tutorials, it's been years since I coded something and also need to learn raylib
+{
+
+}
+
+////////////////////////////////////////////////////////////////////
 }
 
 namespace levels
@@ -32,6 +72,9 @@ namespace levels
         uint8_t waves;
         uint8_t increasingAmountOfEnemies;
     };
+
+
+    //////////////////////////////////////////////////////////////////////////
 }
 
 int main() {
